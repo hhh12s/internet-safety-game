@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Безопасность в Интернете</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .question {
+            margin: 20px 0;
+        }
+        .answer {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Игра: Безопасность в Интернете</h1>
+    <div id="game">
+        <div class="question" id="q1">
+            <p>Вопрос 1: Какой пароль безопаснее?</p>
+            <button class="answer" onclick="nextQuestion(1, false)">123456</button>
+            <button class="answer" onclick="nextQuestion(1, true)">R@nd0mP@ss!</button>
+        </div>
+        <div class="question" id="q2" style="display: none;">
+            <p>Вопрос 2: Стоит ли открывать подозрительные ссылки в сообщениях?</p>
+            <button class="answer" onclick="nextQuestion(2, false)">Да</button>
+            <button class="answer" onclick="nextQuestion(2, true)">Нет</button>
+        </div>
+        <div id="result" style="display: none;">
+            <h2>Результат: <span id="score"></span>/2</h2>
+            <p>Спасибо за участие!</p>
+        </div>
+    </div>
+    <script>
+        let score = 0;
+
+        function nextQuestion(question, isCorrect) {
+            if (isCorrect) score++;
+            document.getElementById(`q${question}`).style.display = 'none';
+            const next = document.getElementById(`q${question + 1}`);
+            if (next) {
+                next.style.display = 'block';
+            } else {
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('score').innerText = score;
+            }
+        }
+    </script>
+</body>
+</html>
